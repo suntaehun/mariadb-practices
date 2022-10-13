@@ -6,7 +6,7 @@ select concat(first_name,' ', last_name) as '이름', emp_no as '사번' from em
 select concat(first_name,' ', last_name) as '이름', gender as '성별', hire_date as '입사일' from employees order by hire_date asc;
 
 -- 문제3. 여직원과 남직원은 각 각 몇 명이나 있나요?
-select gender as '성별', count(gender) as '총원' from employees group by gender;
+select if(gender = 'M', '남자', '여자') as '성별', count(*) as '총원' from employees group by gender;
 
 -- 문제4. 현재 근무하고 있는 직원 수는 몇 명입니까? (salaries 테이블을 사용합니다.)
 select count(*) as '현재 근무 직원 수' from salaries where to_date = '9999-01-01';
