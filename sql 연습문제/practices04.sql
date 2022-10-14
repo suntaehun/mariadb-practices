@@ -82,27 +82,26 @@ order by a.emp_no;
         and d.to_date = '9999-01-01'
         and b. dept_no = e.max_dept_no;
     
--- 문제6. 평균 연봉이 가장 높은 부서는?
-select a.dept_no as dept_no, avg(b.salary) as avg_salary
-	from dept_emp a, salaries b
-   where a.emp_no = b.emp_no
- group by a.dept_no;
- 
- select max(a.avg_salary)
-	from (select a.dept_no, avg(b.salary) as avg_salary
+-- 문제6. 평균 연봉이 가장 높은 부서는?          
+select a.dept_no as max_dept_no, avg(b.salary) as avg_max_salary
 			from dept_emp a, salaries b
 			where a.emp_no = b.emp_no
-			group by a.dept_no) a;
+			 and a.to_date = '9999-01-01'
+			 and b.to_date = '9999-01-01'
+			group by a.dept_no
+            having avg_max_salary = (select max(a.avg_salary) 
+									from (select a.dept_no, avg(b.salary) as avg_salary
+											from dept_emp a, salaries b
+											where a.emp_no = b.emp_no
+											and a.to_date = '9999-01-01'
+											and b.to_date = '9999-01-01'
+											group by a.dept_no) a);
  
  
  
  select *
 	from departments a,
-		(select a.dept_no, avg(b.salary) as avg_salary
-			from dept_emp a, salaries b
-			where a.emp_no = b.emp_no
-			group by a.dept_no) b
-	where a.dept_no = b.dept_no
+		( )
 
 
 -- 문제7. 평균 연봉이 가장 높은 직책?
