@@ -19,3 +19,7 @@ select avg(salary) as '평균 연봉' from salaries where to_date = '9999-01-01'
 
 -- 문제5. 현재 이 회사의 최고/최저 연봉은 얼마입니까?
 select max(salary) as '최고 연봉', min(salary) as '최저 연봉' from salaries where to_date = '9999-01-01';
+
+-- 문제6. 최고 어린 사원의 나이와 최 연장자의 나이는?
+select  date_format(curdate(),'%Y') - date_format(max(birth_date),'%Y'),
+		date_format(curdate(),'%Y') - date_format(min(birth_date),'%Y') from employees;
