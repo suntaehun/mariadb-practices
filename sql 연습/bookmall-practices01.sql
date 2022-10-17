@@ -18,5 +18,9 @@ select * from book;
 -- insert into cart values(null, 1, 3, 2);
 select * from cart;
 
--- insert into orders values(null, )
+-- insert into orders values(null, 24000, '인천광역시 검암동', 1);
 select * from orders;
+
+insert into orders_book values(null, 1, 1, 1);
+insert into orders_book values(null, 1, 2, 1);
+select * from orders_book;
