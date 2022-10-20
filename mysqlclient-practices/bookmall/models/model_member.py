@@ -52,7 +52,7 @@ def findall():
 
 def run_list():
     results = findall()
-    print('--회원 리스트--')
+    print('--고객 리스트--')
     for index, result in enumerate(results):
         print(f'{index + 1}:{result["name"]}, {result["phone_number"]}, {result["email"]}, {result["password"]}')
 
