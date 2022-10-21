@@ -8,7 +8,7 @@ def findall():
         db = conn()
         cursor = db.cursor(DictCursor)
 
-        sql = 'select b.title, a.count, b.price from cart a, book b where a.book_no = b.no'
+        sql = 'select b.title, a.count, b.price * a.count as prices from cart a, book b where a.book_no = b.no'
         cursor.execute(sql)
 
         results = cursor.fetchall()
@@ -25,7 +25,7 @@ def run_list():
     results = findall()
     print('--카트 리스트--')
     for index, result in enumerate(results):
-        print(f'{index + 1}:{result["title"]}, {result["count"]}, {result["price"]}')
+        print(f'{index + 1} - 제목 : {result["title"]} / 수량 : {result["count"]} / 금액 : {result["prices"]}')
 
 # 카트 추가
 def insert(count, book_no, member_no):
@@ -33,7 +33,7 @@ def insert(count, book_no, member_no):
         db = conn()
         cursor = db.cursor()
 
-        sql = 'insert into cart values(null, %d, %d, %d)'
+        sql = 'insert into cart values(null, %s, %s, %s)'
         count = cursor.execute(sql, (count, book_no, member_no))
 
         db.commit()

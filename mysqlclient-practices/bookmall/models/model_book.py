@@ -25,7 +25,7 @@ def run_list():
     results = findall()
     print('--상품 리스트--')
     for index, result in enumerate(results):
-        print(f'{index + 1}:{result["title"]} , {result["price"]}원')
+        print(f'{index + 1} - 제목 : {result["title"]} / 가격 : {result["price"]}원')
 
 # 상품 추가
 def insert(title, price, categorys_no):
@@ -33,8 +33,8 @@ def insert(title, price, categorys_no):
         db = conn()
         cursor = db.cursor()
 
-        sql = 'insert into book values(null, %s, %d, %d)'
-        count = cursor.execute(sql, (title, price,categorys_no))
+        sql = 'insert into book values(null, %s, %s, %s)'
+        count = cursor.execute(sql, (title, price, categorys_no))
 
         db.commit()
 

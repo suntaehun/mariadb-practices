@@ -54,7 +54,7 @@ def run_list():
     results = findall()
     print('--고객 리스트--')
     for index, result in enumerate(results):
-        print(f'{index + 1}:{result["name"]}, {result["phone_number"]}, {result["email"]}, {result["password"]}')
+        print(f'{index + 1} - 이름 : {result["name"]} / 전화번호 : {result["phone_number"]} / 이메일 : {result["email"]} / 비밀번호 : {result["password"]}')
 
 # 고객 삭제 (이름, 비밀번호)
 def deletebyname_password(name, password):

@@ -25,7 +25,7 @@ def run_list():
     results = findall()
     print('--주문 리스트--')
     for index, result in enumerate(results):
-        print(f'{result["no"]}, ({result["name"]}, {result["email"]}), {result["price"]}, {result["address"]}')
+        print(f'주문번호 : {result["no"]} / 주문자 : ({result["name"]}, {result["email"]}) / 결제금액 : {result["price"]} / 배송지 : {result["address"]}')
 
 # 주문 추가
 def insert(price, address, member_no):
@@ -33,7 +33,7 @@ def insert(price, address, member_no):
         db = conn()
         cursor = db.cursor()
 
-        sql = 'insert into cart values(null, %d, %s, %d)'
+        sql = 'insert into orders values(null, %s, %s, %s)'
         count = cursor.execute(sql, (price, address, member_no))
 
         db.commit()

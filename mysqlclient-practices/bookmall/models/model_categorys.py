@@ -51,7 +51,7 @@ def run_list():
     results = findall()
     print('--카테고리 리스트--')
     for index, result in enumerate(results):
-        print(f'{index + 1}:{result["category"]}')
+        print(f'{index + 1} - {result["category"]}')
 
 # 카테고리 삭제
 def deletebycategory(category):
