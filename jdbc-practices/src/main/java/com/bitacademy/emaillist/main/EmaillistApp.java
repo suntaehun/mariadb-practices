@@ -25,7 +25,6 @@ public class EmaillistApp {
 			} else if ("q".equals(command)) {
 				break;
 			}
-
 		}
 		
 		scanner.close();
