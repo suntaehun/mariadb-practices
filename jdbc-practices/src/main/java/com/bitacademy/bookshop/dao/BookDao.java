@@ -123,4 +123,47 @@ public class BookDao {
 
 		return conn;
 	}
+
+	public boolean updateStatus(long no, String status) {
+		BookVo vo = new BookVo();
+		boolean result = false;
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = getConnection();
+
+			// 3. Statement 준비
+			String sql = "update book set status = ? where no = ?";
+			pstmt = conn.prepareStatement(sql);
+
+			// 4. Binding
+			pstmt.setString(1, status);
+			pstmt.setLong(2, no);
+
+			// 5. SQL 실행
+			int count = pstmt.executeUpdate();
+
+			// 6. 결과 처리
+			result = count == 1;
+
+		} catch (SQLException e) {
+			System.out.println("Error:" + e);
+		} finally {
+			try {
+				if (pstmt != null) {
+					pstmt.close();
+				}
+
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return result;
+		
+	}
 }
