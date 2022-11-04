@@ -1,18 +1,15 @@
-package test;
+package com.bitacademy.bookshop.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class DeleteTest02 {
+import com.bitacademy.bookshop.vo.AuthorVo;
 
-	public static void main(String[] args) {
-		boolean result = delete(8L);
-		System.out.println(result ? "성공" : "실패");
-	}
+public class AuthorDao {
 
-	private static boolean delete(Long no) {
+	public boolean insert(AuthorVo vo) {
 		boolean result = false;
 
 		Connection conn = null;
@@ -27,17 +24,17 @@ public class DeleteTest02 {
 			conn = DriverManager.getConnection(url, "webdb", "webdb");
 
 			// 3. Statement 준비
-			String sql = " delete" + "   from dept" + " where no = ?";
+			String sql = "insert into author values(null, ?)";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			// 4. Binding
-			pstmt.setLong(1, no);
-			
+			pstmt.setString(1, vo.getName());
+
 			// 5. SQL 실행
 			int count = pstmt.executeUpdate();
 
-			// 6. 결과처리
-			return count == 1;
+			// 6. 결과 처리
+			result = count == 1;
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패:" + e);
@@ -48,6 +45,7 @@ public class DeleteTest02 {
 				if (pstmt != null) {
 					pstmt.close();
 				}
+
 				if (conn != null) {
 					conn.close();
 				}
