@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class InsertTest {
+public class InsertTest01 {
 
 	public static void main(String[] args) {
 		insert("시스템");
