@@ -125,7 +125,7 @@ public class BookDao {
 	}
 
 	public boolean updateStatus(long no, String status) {
-		BookVo vo = new BookVo();
+//		BookVo vo = new BookVo();
 		boolean result = false;
 
 		Connection conn = null;

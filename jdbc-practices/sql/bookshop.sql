@@ -21,5 +21,8 @@ select * from book;
 delete from book;
 
 -- findAll
-select a.no, a.title, b.name, b.status
+select a.no, a.title, b.name, a.status
  from book a, author b where a.author_no = b.no order by a.no asc;
+ 
+ -- status update
+ update book set status = ? where no = ?;
